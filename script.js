@@ -135,56 +135,54 @@ const caseStudies = {
   },
   "change-detection": {
     "title": "GeoAI Change Detection",
-    "summary": "Bi-temporal computer-vision workflow for identifying where spatial conditions changed.",
-    "objective": "Detect meaningful change between aligned Earth-observation acquisitions.",
-    "approach": "Validate temporal pairs, normalize imagery, compute or infer a change score, threshold results and convert stable change regions into analysis-ready outputs.",
+    "summary": "Tested bi-temporal array workflow for identifying pixel-level differences.",
+    "objective": "Produce a continuous change score and binary mask from aligned image arrays.",
+    "approach": "Check equal shapes, apply robust percentile normalization, calculate absolute differences, average bands and threshold the score.",
     "workflow": [
       "Temporal pair selection",
-      "Co-registration checks",
+      "Shape validation",
       "Normalization",
       "Change scoring",
       "Thresholding",
-      "Spatial filtering",
-      "Vector/statistical output"
+      "Binary mask",
+      "Score and mask output"
     ],
     "stack": [
       "Python",
       "NumPy",
-      "PyTorch-ready",
-      "Rasterio",
-      "GeoPandas"
+      "NumPy",
+      "PyTest",
+      "YAML"
     ],
-    "output": "Change masks and spatial summaries that can feed monitoring applications."
+    "output": "A NumPy score array and uint8 change mask."
   },
   "timeseries": {
     "title": "Satellite Time-Series Intelligence",
-    "summary": "Temporal feature engineering for field monitoring and anomaly discovery.",
-    "objective": "Represent seasonal behavior instead of relying on a single satellite acquisition.",
-    "approach": "Apply scene quality controls, derive spectral/radar features, aggregate by spatial unit and summarize amplitude, trend, seasonality and robust anomalies.",
+    "summary": "NumPy feature engineering for ordered reflectance observations.",
+    "objective": "Represent temporal behavior with NDVI, summary statistics, trend and robust anomaly scores.",
+    "approach": "Derive NDVI from NIR and red arrays, calculate compact statistics and score deviations using the median and MAD.",
     "workflow": [
-      "Scene filtering",
-      "Feature generation",
-      "Spatial aggregation",
-      "Temporal ordering",
+      "NIR/red arrays",
+      "NDVI",
+      "Input validation",
+      "Ordered series",
       "Trend/amplitude",
       "Anomaly scoring",
-      "Feature/API output"
+      "Feature output"
     ],
     "stack": [
       "Python",
-      "Sentinel-1/2",
       "NumPy",
-      "GeoPandas",
-      "Rasterio",
-      "STAC"
+      "PyTest",
+      "YAML"
     ],
     "output": "Compact temporal features for monitoring and ML."
   },
   "rag-assistant": {
     "title": "Geospatial RAG Assistant",
-    "summary": "Grounded RAG architecture that combines retrieval with deterministic spatial tools.",
-    "objective": "Answer spatial questions using traceable context instead of ungrounded generation.",
-    "approach": "Retrieve relevant knowledge, inspect spatial intent, execute explicit tools for measurable operations and pass structured evidence to the response layer.",
+    "summary": "Inspectable lexical retrieval paired with deterministic spatial tool routing.",
+    "objective": "Return relevant document IDs and explicit tool results for spatial questions.",
+    "approach": "Rank documents by normalized token overlap, route supported intent, optionally calculate approximate bounding-box area and return structured evidence.",
     "workflow": [
       "Question",
       "Retriever",
@@ -197,12 +195,11 @@ const caseStudies = {
     "stack": [
       "Python",
       "RAG",
-      "Vector Search",
-      "PostGIS-ready",
-      "FastAPI",
-      "LLMs"
+      "Lexical Retrieval",
+      "Spatial Tools",
+      "Structured Output"
     ],
-    "output": "Grounded spatial question-answering with explicit tool outputs."
+    "output": "Structured retrieval IDs, selected tool and optional area result."
   },
   "geoai-mlops": {
     "title": "GeoAI MLOps",
@@ -230,52 +227,50 @@ const caseStudies = {
   },
   "eo-data": {
     "title": "Earth Observation Data Engineering",
-    "summary": "STAC-oriented architecture for reliable imagery selection and processing.",
-    "objective": "Create reproducible data inputs before model inference begins.",
-    "approach": "Filter catalogues by time/quality, select assets, cache and align data, tile rasters deterministically and preserve metadata through downstream stages.",
+    "summary": "Deterministic filtering of STAC-style metadata and planning of overlapping raster windows.",
+    "objective": "Make scene selection and tile geometry explicit before downstream raster processing.",
+    "approach": "Filter item dictionaries by inclusive dates and cloud cover, sort them chronologically and calculate edge-aware windows from raster dimensions.",
     "workflow": [
-      "AOI",
-      "STAC search",
+      "Item metadata",
+      "Date interval",
       "Date/cloud filters",
-      "Asset selection",
-      "Cache",
-      "Reproject/align",
+      "Chronological sort",
+      "Raster dimensions",
+      "Tile/overlap validation",
       "Window tiling",
-      "COG/features"
+      "Selected items/windows"
     ],
     "stack": [
       "Python",
-      "STAC",
-      "Rasterio",
-      "GDAL",
-      "Cloud Storage",
-      "COG"
+      "Python",
+      "Datetime",
+      "PyTest",
+      "YAML"
     ],
-    "output": "Traceable, repeatable Earth-observation input datasets."
+    "output": "Selected metadata records and deterministic (x, y, width, height) windows."
   },
   "spatial-agents": {
     "title": "Spatial AI Agents",
-    "summary": "Explicit multi-agent orchestration for geospatial tasks with validation around tool calls.",
-    "objective": "Use agent reasoning without delegating deterministic geometry checks to an LLM.",
-    "approach": "A planner decomposes the request, validators check spatial inputs, tool executors run geospatial operations and a final validation stage checks outputs before response assembly.",
+    "summary": "Explicit planner, validator and analyst orchestration with a deterministic trace.",
+    "objective": "Demonstrate validation boundaries and inspectable state in a spatial agent workflow.",
+    "approach": "A planner emits a fixed plan, validators check bounding-box structure before and after analysis, and the analyst calculates width and height in degrees.",
     "workflow": [
       "Request",
       "Planner",
       "AOI validator",
       "Data selector",
-      "Tool executor",
+      "Analyst",
       "Result validator",
       "Response"
     ],
     "stack": [
       "Python",
-      "LLMs",
-      "Tool Calling",
-      "Multi-Agent Systems",
-      "FastAPI-ready",
-      "GIS APIs"
+      "Dataclasses",
+      "Python",
+      "PyTest",
+      "YAML"
     ],
-    "output": "Traceable agent workflows with deterministic spatial guardrails."
+    "output": "A structured plan, ordered execution trace and bounding-box dimensions."
   }
 };
 
