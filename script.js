@@ -286,3 +286,21 @@ const E=id=>document.getElementById(id);
 document.querySelectorAll('.case-btn').forEach(btn=>btn.addEventListener('click',()=>{const c=caseStudies[btn.dataset.case]; if(!c)return; E('modalTitle').textContent=c.title; E('modalSummary').textContent=c.summary; E('modalObjective').textContent=c.objective; E('modalApproach').textContent=c.approach; E('modalOutput').textContent=c.output; E('modalWorkflow').innerHTML=c.workflow.map((s,i)=>`<div class="workflow-step"><span>${String(i+1).padStart(2,'0')}</span><p>${s}</p></div>`).join(''); E('modalStack').innerHTML=c.stack.map(s=>`<span>${s}</span>`).join(''); E('modalRepo').href=c.repo; if(typeof dialog.showModal==='function')dialog.showModal(); else dialog.setAttribute('open',''); }));
 const closeDialog=()=>{if(typeof dialog.close==='function')dialog.close(); else dialog.removeAttribute('open');};
 E('closeDialog').addEventListener('click',closeDialog); dialog.addEventListener('click',e=>{if(e.target===dialog)closeDialog();}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDialog();});
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.querySelectorAll(".tilt-card").forEach(card => {
+    card.addEventListener("pointermove", event => {
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      card.style.setProperty("--rx", `${(-y * 7).toFixed(2)}deg`);
+      card.style.setProperty("--ry", `${(x * 7).toFixed(2)}deg`);
+      card.classList.add("is-tilting");
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+      card.classList.remove("is-tilting");
+    });
+  });
+}
