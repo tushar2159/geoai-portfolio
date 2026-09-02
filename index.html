@@ -58,8 +58,7 @@
             <span>GEOAI · COMPUTER VISION</span>
             <h3>Farm Boundary Detection</h3>
             <p>Automated extraction and spatial refinement of agricultural field boundaries from imagery.</p>
-            <button class="case-btn" data-title="Farm Boundary Detection"
-              data-text="A public-safe demonstration of image segmentation, vectorization and geospatial post-processing for agricultural field boundaries. No client AOIs, private data or production metrics are shown.">Explore approach</button>
+            <button class="case-btn" data-case="farm-boundary">Explore approach</button>
           </div>
         </article>
 
@@ -69,8 +68,7 @@
             <span>SPATIAL PRODUCT · ANALYTICS</span>
             <h3>Crop Intelligence Dashboard</h3>
             <p>Interactive spatial monitoring patterns that combine imagery, indices and field-level insights.</p>
-            <button class="case-btn" data-title="Crop Intelligence Dashboard"
-              data-text="An interface concept that organizes earth-observation signals, map layers and contextual summaries into a usable decision-support experience. Displayed values are illustrative.">Explore approach</button>
+            <button class="case-btn" data-case="crop-intelligence">Explore approach</button>
           </div>
         </article>
 
@@ -80,8 +78,7 @@
             <span>LLM · RAG · AGENTS</span>
             <h3>Multilingual Spatial Assistant</h3>
             <p>Natural-language access to geospatial context, retrieval and intelligent workflows.</p>
-            <button class="case-btn" data-title="Multilingual Spatial Assistant"
-              data-text="A generalized conversational AI pattern combining retrieval, structured spatial context and tool-oriented workflows. Private prompts, employer workflows and user data are excluded.">Explore approach</button>
+            <button class="case-btn" data-case="spatial-assistant">Explore approach</button>
           </div>
         </article>
 
@@ -91,8 +88,7 @@
             <span>CLOUD · DATA ENGINEERING</span>
             <h3>Satellite Analytics Pipeline</h3>
             <p>Reusable ingestion, preprocessing, inference and API-delivery architecture for geospatial data.</p>
-            <button class="case-btn" data-title="Satellite Analytics Pipeline"
-              data-text="A generic architecture covering geospatial ingestion, preprocessing, inference, validation and API-ready delivery without exposing production infrastructure or proprietary implementation details.">Explore approach</button>
+            <button class="case-btn" data-case="satellite-pipeline">Explore approach</button>
           </div>
         </article>
 
@@ -102,8 +98,7 @@
             <span>DEEP LEARNING · SEGMENTATION</span>
             <h3>GeoAI Segmentation Models</h3>
             <p>Semantic segmentation for converting imagery into structured land-cover and feature layers.</p>
-            <button class="case-btn" data-title="GeoAI Segmentation Models"
-              data-text="A transferable deep-learning workflow for pixel-level spatial understanding. Commercial taxonomies, proprietary training data and customer-specific performance are intentionally excluded.">Explore approach</button>
+            <button class="case-btn" data-case="segmentation-models">Explore approach</button>
           </div>
         </article>
       </div>
@@ -154,19 +149,51 @@
     <a href="https://github.com/tushar2159" target="_blank" rel="noopener">github.com/tushar2159 ↗</a>
   </footer>
 
+  
   <dialog id="caseDialog">
-    <div class="modal-content">
+    <div class="modal-content case-study-modal">
       <button id="closeDialog" class="modal-close" aria-label="Close">×</button>
-      <p class="eyebrow">PUBLIC PORTFOLIO CASE STUDY</p>
+
+      <p class="eyebrow">TECHNICAL APPROACH</p>
       <h2 id="modalTitle"></h2>
-      <p id="modalText"></p>
+      <p id="modalSummary" class="case-summary"></p>
+
+      <div class="case-section">
+        <span class="case-label">OBJECTIVE</span>
+        <p id="modalObjective"></p>
+      </div>
+
+      <div class="case-section">
+        <span class="case-label">APPROACH</span>
+        <p id="modalApproach"></p>
+      </div>
+
+      <div class="case-section">
+        <span class="case-label">WORKFLOW</span>
+        <div id="modalWorkflow" class="workflow-steps"></div>
+      </div>
+
+      <div class="case-section">
+        <span class="case-label">TECH STACK</span>
+        <div id="modalStack" class="case-stack"></div>
+      </div>
+
+      <div class="case-section">
+        <span class="case-label">OUTPUT</span>
+        <p id="modalOutput"></p>
+      </div>
+
       <div class="privacy-note">
         <strong>Privacy-safe showcase</strong>
-        <p>No client identities, employer-specific workflows, proprietary datasets, private AOIs,
-        production KPIs or confidential model details are shown.</p>
+        <p>
+          Architecture and methodology are generalized for public presentation.
+          No client identities, proprietary datasets, private AOIs, credentials,
+          production KPIs or confidential implementation details are exposed.
+        </p>
       </div>
     </div>
   </dialog>
+
 
   <script src="script.js"></script>
 </body>
