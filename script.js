@@ -254,17 +254,33 @@ document.querySelectorAll(".case-btn").forEach(btn => {
       .map(item => `<span>${item}</span>`)
       .join("");
 
-    dialog.showModal();
+    if (typeof dialog.showModal === "function") {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute("open", "");
+    }
   });
-
 });
 
 
+const closeDialog = () => {
+  if (typeof dialog.close === "function") {
+    dialog.close();
+  } else {
+    dialog.removeAttribute("open");
+  }
+};
+
 document
   .getElementById("closeDialog")
-  .addEventListener("click", () => dialog.close());
+  .addEventListener("click", closeDialog);
 
 
 dialog.addEventListener("click", e => {
-  if (e.target === dialog) dialog.close();
+  if (e.target === dialog) closeDialog();
+});
+
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeDialog();
 });
