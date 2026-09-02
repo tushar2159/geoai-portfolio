@@ -79,6 +79,7 @@ const caseStudies = {
     "output": "Conversational access to geospatial knowledge and analytical workflows."
   },
   "satellite-pipeline": {
+    "repo": "https://github.com/tushar2159/vision-model-serving-pipeline",
     "title": "Satellite Analytics Pipeline",
     "summary": "Modular architecture from imagery acquisition through inference and delivery.",
     "objective": "Keep acquisition, preprocessing, model logic and serving independently replaceable.",
@@ -107,6 +108,7 @@ const caseStudies = {
     "output": "Repeatable cloud-ready Earth-observation analytics."
   },
   "segmentation-models": {
+    "repo": "https://github.com/tushar2159/semantic-segmentation-pipeline",
     "title": "GeoAI Segmentation Models",
     "summary": "Pixel-level Earth-observation understanding using encoder-decoder models.",
     "objective": "Convert multi-band imagery into structured land-cover or feature masks.",
@@ -134,6 +136,7 @@ const caseStudies = {
     "output": "GIS-ready pixel-level prediction layers."
   },
   "change-detection": {
+    "repo": "https://github.com/tushar2159/geoai-change-detection-pipeline",
     "title": "GeoAI Change Detection",
     "summary": "Tested bi-temporal array workflow for identifying pixel-level differences.",
     "objective": "Produce a continuous change score and binary mask from aligned image arrays.",
@@ -157,6 +160,7 @@ const caseStudies = {
     "output": "A NumPy score array and uint8 change mask."
   },
   "timeseries": {
+    "repo": "https://github.com/tushar2159/satellite-timeseries-analytics",
     "title": "Satellite Time-Series Intelligence",
     "summary": "NumPy feature engineering for ordered reflectance observations.",
     "objective": "Represent temporal behavior with NDVI, summary statistics, trend and robust anomaly scores.",
@@ -179,6 +183,7 @@ const caseStudies = {
     "output": "Compact temporal features for monitoring and ML."
   },
   "rag-assistant": {
+    "repo": "https://github.com/tushar2159/geospatial-rag-assistant",
     "title": "Geospatial RAG Assistant",
     "summary": "Inspectable lexical retrieval paired with deterministic spatial tool routing.",
     "objective": "Return relevant document IDs and explicit tool results for spatial questions.",
@@ -202,6 +207,7 @@ const caseStudies = {
     "output": "Structured retrieval IDs, selected tool and optional area result."
   },
   "geoai-mlops": {
+    "repo": "https://github.com/tushar2159/geoai-mlops-template",
     "title": "GeoAI MLOps",
     "summary": "Reproducibility and model-release practices designed for geospatial ML.",
     "objective": "Make experiments, candidate models and releases auditable and repeatable.",
@@ -226,6 +232,7 @@ const caseStudies = {
     "output": "A repeatable path from experiment to versioned model candidate."
   },
   "eo-data": {
+    "repo": "https://github.com/tushar2159/earth-observation-data-pipeline",
     "title": "Earth Observation Data Engineering",
     "summary": "Deterministic filtering of STAC-style metadata and planning of overlapping raster windows.",
     "objective": "Make scene selection and tile geometry explicit before downstream raster processing.",
@@ -250,6 +257,7 @@ const caseStudies = {
     "output": "Selected metadata records and deterministic (x, y, width, height) windows."
   },
   "spatial-agents": {
+    "repo": "https://github.com/tushar2159/spatial-agent-workflows",
     "title": "Spatial AI Agents",
     "summary": "Explicit planner, validator and analyst orchestration with a deterministic trace.",
     "objective": "Demonstrate validation boundaries and inspectable state in a spatial agent workflow.",
@@ -276,6 +284,6 @@ const caseStudies = {
 
 const dialog=document.getElementById('caseDialog');
 const E=id=>document.getElementById(id);
-document.querySelectorAll('.case-btn').forEach(btn=>btn.addEventListener('click',()=>{const c=caseStudies[btn.dataset.case]; if(!c)return; E('modalTitle').textContent=c.title; E('modalSummary').textContent=c.summary; E('modalObjective').textContent=c.objective; E('modalApproach').textContent=c.approach; E('modalOutput').textContent=c.output; E('modalWorkflow').innerHTML=c.workflow.map((s,i)=>`<div class="workflow-step"><span>${String(i+1).padStart(2,'0')}</span><p>${s}</p></div>`).join(''); E('modalStack').innerHTML=c.stack.map(s=>`<span>${s}</span>`).join(''); if(typeof dialog.showModal==='function')dialog.showModal(); else dialog.setAttribute('open',''); }));
+document.querySelectorAll('.case-btn').forEach(btn=>btn.addEventListener('click',()=>{const c=caseStudies[btn.dataset.case]; if(!c)return; E('modalTitle').textContent=c.title; E('modalSummary').textContent=c.summary; E('modalObjective').textContent=c.objective; E('modalApproach').textContent=c.approach; E('modalOutput').textContent=c.output; E('modalWorkflow').innerHTML=c.workflow.map((s,i)=>`<div class="workflow-step"><span>${String(i+1).padStart(2,'0')}</span><p>${s}</p></div>`).join(''); E('modalStack').innerHTML=c.stack.map(s=>`<span>${s}</span>`).join(''); const repo=E('modalRepo'); repo.hidden=!c.repo; if(c.repo)repo.href=c.repo; if(typeof dialog.showModal==='function')dialog.showModal(); else dialog.setAttribute('open',''); }));
 const closeDialog=()=>{if(typeof dialog.close==='function')dialog.close(); else dialog.removeAttribute('open');};
 E('closeDialog').addEventListener('click',closeDialog); dialog.addEventListener('click',e=>{if(e.target===dialog)closeDialog();}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDialog();});
