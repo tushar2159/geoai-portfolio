@@ -1,6 +1,6 @@
 # Tushar Katkar — GeoAI Portfolio
 
-A privacy-safe public portfolio website for showcasing GeoAI, remote sensing, computer vision,
+A public portfolio website for showcasing GeoAI, remote sensing, computer vision,
 spatial product engineering and AI-system capabilities.
 
 ## Run locally

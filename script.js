@@ -1,286 +1,286 @@
-
-const filters = [...document.querySelectorAll('.filter')];
-const projects = [...document.querySelectorAll('.project-card')];
-
-filters.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const filter = btn.dataset.filter;
-
-    filters.forEach(x =>
-      x.classList.toggle('active', x === btn)
-    );
-
-    projects.forEach(card => {
-      card.classList.toggle(
-        'hidden',
-        filter !== 'all' && card.dataset.category !== filter
-      );
-    });
-  });
-});
-
+const filters=[...document.querySelectorAll('.filter')];
+const projects=[...document.querySelectorAll('.project-card')];
+filters.forEach(btn=>btn.addEventListener('click',()=>{const f=btn.dataset.filter;filters.forEach(x=>x.classList.toggle('active',x===btn));projects.forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.category!==f));}));
 
 const caseStudies = {
-
   "farm-boundary": {
-    title: "Farm Boundary Detection",
-    summary:
-      "A GeoAI workflow for converting satellite or aerial imagery into clean, GIS-ready agricultural field boundaries.",
-
-    objective:
-      "Automatically detect individual agricultural fields from imagery and transform raw model predictions into usable vector polygons for spatial analysis.",
-
-    approach:
-      "Imagery is standardized and tiled before being passed through a semantic segmentation model. The probability mask is thresholded and converted into vector geometries. Geospatial post-processing removes noise, closes small gaps, simplifies boundaries and applies topology checks before final export.",
-
-    workflow: [
+    "title": "Farm Boundary Detection",
+    "summary": "Imagery-to-vector GeoAI workflow for GIS-ready field boundaries.",
+    "objective": "Extract individual agricultural fields and transform model output into usable polygon layers.",
+    "approach": "Standardize imagery, tile it, run semantic segmentation, threshold probabilities, vectorize masks and apply geometry/topology cleanup.",
+    "workflow": [
       "Imagery ingestion & normalization",
-      "Spatial tiling / patch generation",
-      "Semantic segmentation inference",
-      "Probability-mask thresholding",
+      "Patch generation",
+      "Segmentation inference",
+      "Mask thresholding",
       "Raster-to-vector conversion",
-      "Polygon cleaning & topology validation",
-      "GIS-ready boundary export"
+      "Topology cleanup",
+      "GIS export"
     ],
-
-    stack: [
+    "stack": [
       "Python",
       "PyTorch",
       "Rasterio",
       "GeoPandas",
-      "OpenCV",
       "Shapely",
-      "GDAL",
-      "QGIS"
+      "GDAL"
     ],
-
-    output:
-      "Clean farm-boundary polygons that can support crop monitoring, field analytics, statistics, spatial indexing and downstream GeoAI applications."
+    "output": "Clean field polygons for downstream spatial analytics."
   },
-
-
   "crop-intelligence": {
-    title: "Crop Intelligence Dashboard",
-    summary:
-      "A field-level spatial intelligence interface combining Earth-observation signals, geospatial layers and temporal analytics.",
-
-    objective:
-      "Transform multi-date satellite observations into an interpretable field-level monitoring experience rather than exposing users to raw raster data.",
-
-    approach:
-      "Farm geometries act as the primary spatial unit. Satellite observations are processed into temporal indicators and summarized at field level. Backend APIs provide normalized spatial and time-series information while the frontend presents map layers, crop signals and contextual summaries.",
-
-    workflow: [
-      "Farm / AOI ingestion",
-      "Satellite scene discovery",
-      "Cloud & quality screening",
-      "Spectral-index generation",
-      "Field-level zonal statistics",
-      "Temporal trend analysis",
+    "title": "Crop Intelligence Dashboard",
+    "summary": "Field-level EO monitoring architecture combining maps and temporal signals.",
+    "objective": "Convert multi-date observations into an interpretable spatial monitoring experience.",
+    "approach": "Use farm geometries as analysis units, compute EO indicators and temporal summaries, then expose normalized results through APIs and interactive maps.",
+    "workflow": [
+      "Farm/AOI ingestion",
+      "Scene discovery",
+      "Quality screening",
+      "Index generation",
+      "Zonal statistics",
+      "Temporal analytics",
       "API delivery",
-      "Interactive map visualization"
+      "Map visualization"
     ],
-
-    stack: [
+    "stack": [
       "Python",
       "Sentinel-1",
       "Sentinel-2",
       "GeoPandas",
-      "Rasterio",
       "FastAPI",
       "PostGIS",
       "AWS"
     ],
-
-    output:
-      "A scalable spatial monitoring pattern that converts Earth-observation data into understandable field-level insights and decision-support layers."
+    "output": "Decision-ready field-level spatial and temporal insights."
   },
-
-
   "spatial-assistant": {
-    title: "Multilingual Spatial Assistant",
-    summary:
-      "An LLM-powered architecture for interacting with spatial data, analytical services and domain knowledge through natural language.",
-
-    objective:
-      "Allow users to ask contextual questions about farms, imagery and analytical results without requiring direct interaction with GIS tools or complex APIs.",
-
-    approach:
-      "User queries pass through language-aware intent processing before relevant knowledge and spatial context are retrieved. A retrieval layer supplies grounded information while tool-routing logic can invoke analytical APIs. The LLM synthesizes the retrieved context and tool outputs into a user-friendly response.",
-
-    workflow: [
-      "Natural-language query",
-      "Language & intent understanding",
-      "Context / metadata retrieval",
-      "RAG knowledge retrieval",
-      "Spatial tool selection",
-      "API / analytical execution",
-      "Grounded LLM response",
-      "Multilingual delivery"
+    "title": "Multilingual Spatial Assistant",
+    "summary": "Natural-language interface over spatial context, retrieval and analytical tools.",
+    "objective": "Make geospatial information accessible without direct interaction with GIS software.",
+    "approach": "Resolve language and intent, retrieve grounded context, select deterministic tools/APIs and synthesize structured responses.",
+    "workflow": [
+      "Query",
+      "Intent/language",
+      "Context retrieval",
+      "RAG",
+      "Tool routing",
+      "Spatial execution",
+      "Grounded response"
     ],
-
-    stack: [
+    "stack": [
       "Python",
       "LLMs",
       "RAG",
       "Vector Search",
       "FastAPI",
       "Tool Calling",
-      "Multi-Agent Systems",
       "AWS"
     ],
-
-    output:
-      "A conversational interface capable of connecting users with spatial knowledge, analytical results and geospatial workflows through natural-language interaction."
+    "output": "Conversational access to geospatial knowledge and analytical workflows."
   },
-
-
   "satellite-pipeline": {
-    title: "Satellite Analytics Pipeline",
-    summary:
-      "A reusable cloud-oriented architecture for taking geospatial data from acquisition through preprocessing, inference and API-ready delivery.",
-
-    objective:
-      "Build repeatable geospatial processing workflows that can handle satellite imagery without coupling model logic directly to data acquisition or application layers.",
-
-    approach:
-      "The architecture separates imagery discovery, preprocessing, model inference, geospatial post-processing and serving. Configuration-driven components make individual stages replaceable while metadata and validation steps maintain reproducibility throughout the workflow.",
-
-    workflow: [
+    "title": "Satellite Analytics Pipeline",
+    "summary": "Modular architecture from imagery acquisition through inference and delivery.",
+    "objective": "Keep acquisition, preprocessing, model logic and serving independently replaceable.",
+    "approach": "Separate catalogue search, caching, reprojection, feature generation, inference, post-processing and API delivery with validation between stages.",
+    "workflow": [
       "AOI request",
-      "Imagery catalogue search",
-      "Acquisition & caching",
-      "Preprocessing / reprojection",
-      "Feature generation",
-      "Model inference",
+      "Catalogue search",
+      "Acquisition/cache",
+      "Preprocessing",
+      "Features",
+      "Inference",
       "Spatial post-processing",
       "Validation",
-      "Object storage",
-      "API delivery"
+      "Storage/API"
     ],
-
-    stack: [
+    "stack": [
       "Python",
       "GDAL",
       "Rasterio",
       "GeoPandas",
       "PyTorch",
       "FastAPI",
-      "AWS S3",
+      "AWS",
       "Docker"
     ],
-
-    output:
-      "A modular GeoAI processing architecture capable of supporting repeatable satellite-based analytics and downstream application integration."
+    "output": "Repeatable cloud-ready Earth-observation analytics."
   },
-
-
   "segmentation-models": {
-    title: "GeoAI Segmentation Models",
-    summary:
-      "Deep-learning architectures for converting Earth-observation imagery into structured pixel-level spatial information.",
-
-    objective:
-      "Identify land-cover classes, agricultural structures or other spatial features directly from multi-band imagery at pixel level.",
-
-    approach:
-      "Multi-band imagery and aligned segmentation masks are prepared as training patches. A configurable encoder-decoder model learns spatial and spectral representations. Validation uses segmentation metrics and visual QA, followed by tiled inference and geospatial reconstruction for large-area prediction.",
-
-    workflow: [
-      "Multi-band dataset preparation",
-      "Image / mask alignment validation",
-      "Training / validation split",
-      "Patch sampling",
-      "Encoder-decoder model training",
-      "Loss & metric monitoring",
+    "title": "GeoAI Segmentation Models",
+    "summary": "Pixel-level Earth-observation understanding using encoder-decoder models.",
+    "objective": "Convert multi-band imagery into structured land-cover or feature masks.",
+    "approach": "Prepare aligned image/mask patches, train configurable segmentation models, evaluate with spatial metrics and visual QA, then reconstruct tiled predictions.",
+    "workflow": [
+      "Dataset preparation",
+      "Alignment validation",
+      "Split",
+      "Sampling",
+      "Model training",
+      "Metrics",
       "Visual QA",
       "Tiled inference",
-      "Prediction mosaicking",
-      "GIS layer generation"
+      "Mosaic/export"
     ],
-
-    stack: [
+    "stack": [
       "Python",
       "PyTorch",
       "SegFormer",
       "U-Net",
       "Rasterio",
       "NumPy",
-      "GeoPandas",
-      "Computer Vision"
+      "GeoPandas"
     ],
-
-    output:
-      "Pixel-level prediction layers and GIS-ready spatial products suitable for land-cover mapping, feature extraction and automated Earth-observation analysis."
+    "output": "GIS-ready pixel-level prediction layers."
+  },
+  "change-detection": {
+    "title": "GeoAI Change Detection",
+    "summary": "Bi-temporal computer-vision workflow for identifying where spatial conditions changed.",
+    "objective": "Detect meaningful change between aligned Earth-observation acquisitions.",
+    "approach": "Validate temporal pairs, normalize imagery, compute or infer a change score, threshold results and convert stable change regions into analysis-ready outputs.",
+    "workflow": [
+      "Temporal pair selection",
+      "Co-registration checks",
+      "Normalization",
+      "Change scoring",
+      "Thresholding",
+      "Spatial filtering",
+      "Vector/statistical output"
+    ],
+    "stack": [
+      "Python",
+      "NumPy",
+      "PyTorch-ready",
+      "Rasterio",
+      "GeoPandas"
+    ],
+    "output": "Change masks and spatial summaries that can feed monitoring applications."
+  },
+  "timeseries": {
+    "title": "Satellite Time-Series Intelligence",
+    "summary": "Temporal feature engineering for field monitoring and anomaly discovery.",
+    "objective": "Represent seasonal behavior instead of relying on a single satellite acquisition.",
+    "approach": "Apply scene quality controls, derive spectral/radar features, aggregate by spatial unit and summarize amplitude, trend, seasonality and robust anomalies.",
+    "workflow": [
+      "Scene filtering",
+      "Feature generation",
+      "Spatial aggregation",
+      "Temporal ordering",
+      "Trend/amplitude",
+      "Anomaly scoring",
+      "Feature/API output"
+    ],
+    "stack": [
+      "Python",
+      "Sentinel-1/2",
+      "NumPy",
+      "GeoPandas",
+      "Rasterio",
+      "STAC"
+    ],
+    "output": "Compact temporal features for monitoring and ML."
+  },
+  "rag-assistant": {
+    "title": "Geospatial RAG Assistant",
+    "summary": "Grounded RAG architecture that combines retrieval with deterministic spatial tools.",
+    "objective": "Answer spatial questions using traceable context instead of ungrounded generation.",
+    "approach": "Retrieve relevant knowledge, inspect spatial intent, execute explicit tools for measurable operations and pass structured evidence to the response layer.",
+    "workflow": [
+      "Question",
+      "Retriever",
+      "Intent/tool router",
+      "Spatial context",
+      "Deterministic tool",
+      "Evidence bundle",
+      "Grounded answer"
+    ],
+    "stack": [
+      "Python",
+      "RAG",
+      "Vector Search",
+      "PostGIS-ready",
+      "FastAPI",
+      "LLMs"
+    ],
+    "output": "Grounded spatial question-answering with explicit tool outputs."
+  },
+  "geoai-mlops": {
+    "title": "GeoAI MLOps",
+    "summary": "Reproducibility and model-release practices designed for geospatial ML.",
+    "objective": "Make experiments, candidate models and releases auditable and repeatable.",
+    "approach": "Keep tunables in config, hash artifacts/configs, apply measurable quality gates, record release manifests and run regression tests in CI.",
+    "workflow": [
+      "Config lock",
+      "Prepare",
+      "Train/evaluate",
+      "Quality gates",
+      "Artifact hashing",
+      "Release manifest",
+      "CI regression"
+    ],
+    "stack": [
+      "Python",
+      "PyTest",
+      "GitHub Actions",
+      "YAML",
+      "SHA-256",
+      "Model Registry"
+    ],
+    "output": "A repeatable path from experiment to versioned model candidate."
+  },
+  "eo-data": {
+    "title": "Earth Observation Data Engineering",
+    "summary": "STAC-oriented architecture for reliable imagery selection and processing.",
+    "objective": "Create reproducible data inputs before model inference begins.",
+    "approach": "Filter catalogues by time/quality, select assets, cache and align data, tile rasters deterministically and preserve metadata through downstream stages.",
+    "workflow": [
+      "AOI",
+      "STAC search",
+      "Date/cloud filters",
+      "Asset selection",
+      "Cache",
+      "Reproject/align",
+      "Window tiling",
+      "COG/features"
+    ],
+    "stack": [
+      "Python",
+      "STAC",
+      "Rasterio",
+      "GDAL",
+      "Cloud Storage",
+      "COG"
+    ],
+    "output": "Traceable, repeatable Earth-observation input datasets."
+  },
+  "spatial-agents": {
+    "title": "Spatial AI Agents",
+    "summary": "Explicit multi-agent orchestration for geospatial tasks with validation around tool calls.",
+    "objective": "Use agent reasoning without delegating deterministic geometry checks to an LLM.",
+    "approach": "A planner decomposes the request, validators check spatial inputs, tool executors run geospatial operations and a final validation stage checks outputs before response assembly.",
+    "workflow": [
+      "Request",
+      "Planner",
+      "AOI validator",
+      "Data selector",
+      "Tool executor",
+      "Result validator",
+      "Response"
+    ],
+    "stack": [
+      "Python",
+      "LLMs",
+      "Tool Calling",
+      "Multi-Agent Systems",
+      "FastAPI-ready",
+      "GIS APIs"
+    ],
+    "output": "Traceable agent workflows with deterministic spatial guardrails."
   }
 };
 
-
-const dialog = document.getElementById("caseDialog");
-const modalTitle = document.getElementById("modalTitle");
-const modalSummary = document.getElementById("modalSummary");
-const modalObjective = document.getElementById("modalObjective");
-const modalApproach = document.getElementById("modalApproach");
-const modalWorkflow = document.getElementById("modalWorkflow");
-const modalStack = document.getElementById("modalStack");
-const modalOutput = document.getElementById("modalOutput");
-
-
-document.querySelectorAll(".case-btn").forEach(btn => {
-
-  btn.addEventListener("click", () => {
-
-    const caseStudy = caseStudies[btn.dataset.case];
-
-    if (!caseStudy) return;
-
-    modalTitle.textContent = caseStudy.title;
-    modalSummary.textContent = caseStudy.summary;
-    modalObjective.textContent = caseStudy.objective;
-    modalApproach.textContent = caseStudy.approach;
-    modalOutput.textContent = caseStudy.output;
-
-    modalWorkflow.innerHTML = caseStudy.workflow
-      .map(
-        (step, index) =>
-          `<div class="workflow-step">
-             <span>${String(index + 1).padStart(2, "0")}</span>
-             <p>${step}</p>
-           </div>`
-      )
-      .join("");
-
-    modalStack.innerHTML = caseStudy.stack
-      .map(item => `<span>${item}</span>`)
-      .join("");
-
-    if (typeof dialog.showModal === "function") {
-      dialog.showModal();
-    } else {
-      dialog.setAttribute("open", "");
-    }
-  });
-});
-
-
-const closeDialog = () => {
-  if (typeof dialog.close === "function") {
-    dialog.close();
-  } else {
-    dialog.removeAttribute("open");
-  }
-};
-
-document
-  .getElementById("closeDialog")
-  .addEventListener("click", closeDialog);
-
-
-dialog.addEventListener("click", e => {
-  if (e.target === dialog) closeDialog();
-});
-
-
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeDialog();
-});
+const dialog=document.getElementById('caseDialog');
+const E=id=>document.getElementById(id);
+document.querySelectorAll('.case-btn').forEach(btn=>btn.addEventListener('click',()=>{const c=caseStudies[btn.dataset.case]; if(!c)return; E('modalTitle').textContent=c.title; E('modalSummary').textContent=c.summary; E('modalObjective').textContent=c.objective; E('modalApproach').textContent=c.approach; E('modalOutput').textContent=c.output; E('modalWorkflow').innerHTML=c.workflow.map((s,i)=>`<div class="workflow-step"><span>${String(i+1).padStart(2,'0')}</span><p>${s}</p></div>`).join(''); E('modalStack').innerHTML=c.stack.map(s=>`<span>${s}</span>`).join(''); if(typeof dialog.showModal==='function')dialog.showModal(); else dialog.setAttribute('open',''); }));
+const closeDialog=()=>{if(typeof dialog.close==='function')dialog.close(); else dialog.removeAttribute('open');};
+E('closeDialog').addEventListener('click',closeDialog); dialog.addEventListener('click',e=>{if(e.target===dialog)closeDialog();}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDialog();});
