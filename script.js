@@ -4,6 +4,7 @@ filters.forEach(btn=>btn.addEventListener('click',()=>{const f=btn.dataset.filte
 
 const caseStudies = {
   "farm-boundary": {
+    "repo": "https://github.com/tushar2159/semantic-segmentation-pipeline",
     "title": "Farm Boundary Detection",
     "summary": "Imagery-to-vector GeoAI workflow for GIS-ready field boundaries.",
     "objective": "Extract individual agricultural fields and transform model output into usable polygon layers.",
@@ -28,6 +29,7 @@ const caseStudies = {
     "output": "Clean field polygons for downstream spatial analytics."
   },
   "crop-intelligence": {
+    "repo": "https://github.com/tushar2159/satellite-timeseries-analytics",
     "title": "Crop Intelligence Dashboard",
     "summary": "Field-level EO monitoring architecture combining maps and temporal signals.",
     "objective": "Convert multi-date observations into an interpretable spatial monitoring experience.",
@@ -54,6 +56,7 @@ const caseStudies = {
     "output": "Decision-ready field-level spatial and temporal insights."
   },
   "spatial-assistant": {
+    "repo": "https://github.com/tushar2159/geospatial-rag-assistant",
     "title": "Multilingual Spatial Assistant",
     "summary": "Natural-language interface over spatial context, retrieval and analytical tools.",
     "objective": "Make geospatial information accessible without direct interaction with GIS software.",
@@ -153,7 +156,6 @@ const caseStudies = {
     "stack": [
       "Python",
       "NumPy",
-      "NumPy",
       "PyTest",
       "YAML"
     ],
@@ -249,7 +251,6 @@ const caseStudies = {
     ],
     "stack": [
       "Python",
-      "Python",
       "Datetime",
       "PyTest",
       "YAML"
@@ -272,9 +273,7 @@ const caseStudies = {
       "Response"
     ],
     "stack": [
-      "Python",
       "Dataclasses",
-      "Python",
       "PyTest",
       "YAML"
     ],
@@ -284,6 +283,6 @@ const caseStudies = {
 
 const dialog=document.getElementById('caseDialog');
 const E=id=>document.getElementById(id);
-document.querySelectorAll('.case-btn').forEach(btn=>btn.addEventListener('click',()=>{const c=caseStudies[btn.dataset.case]; if(!c)return; E('modalTitle').textContent=c.title; E('modalSummary').textContent=c.summary; E('modalObjective').textContent=c.objective; E('modalApproach').textContent=c.approach; E('modalOutput').textContent=c.output; E('modalWorkflow').innerHTML=c.workflow.map((s,i)=>`<div class="workflow-step"><span>${String(i+1).padStart(2,'0')}</span><p>${s}</p></div>`).join(''); E('modalStack').innerHTML=c.stack.map(s=>`<span>${s}</span>`).join(''); const repo=E('modalRepo'); repo.hidden=!c.repo; if(c.repo)repo.href=c.repo; if(typeof dialog.showModal==='function')dialog.showModal(); else dialog.setAttribute('open',''); }));
+document.querySelectorAll('.case-btn').forEach(btn=>btn.addEventListener('click',()=>{const c=caseStudies[btn.dataset.case]; if(!c)return; E('modalTitle').textContent=c.title; E('modalSummary').textContent=c.summary; E('modalObjective').textContent=c.objective; E('modalApproach').textContent=c.approach; E('modalOutput').textContent=c.output; E('modalWorkflow').innerHTML=c.workflow.map((s,i)=>`<div class="workflow-step"><span>${String(i+1).padStart(2,'0')}</span><p>${s}</p></div>`).join(''); E('modalStack').innerHTML=c.stack.map(s=>`<span>${s}</span>`).join(''); E('modalRepo').href=c.repo; if(typeof dialog.showModal==='function')dialog.showModal(); else dialog.setAttribute('open',''); }));
 const closeDialog=()=>{if(typeof dialog.close==='function')dialog.close(); else dialog.removeAttribute('open');};
 E('closeDialog').addEventListener('click',closeDialog); dialog.addEventListener('click',e=>{if(e.target===dialog)closeDialog();}); document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDialog();});
