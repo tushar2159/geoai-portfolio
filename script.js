@@ -3,6 +3,31 @@ const projects=[...document.querySelectorAll('.project-card')];
 filters.forEach(btn=>btn.addEventListener('click',()=>{const f=btn.dataset.filter;filters.forEach(x=>x.classList.toggle('active',x===btn));projects.forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.category!==f));}));
 
 const caseStudies = {
+  "agentic-earth": {
+    "repo": "https://github.com/tushar2159/agentic-earth-intelligence",
+    "title": "Agentic Earth Intelligence",
+    "summary": "A traceable natural-language interface to public Earth-observation discovery and analysis.",
+    "objective": "Turn an analyst request into a validated plan, live satellite catalogue search, ranked evidence and an inspectable result.",
+    "approach": "Parse intent into typed workflow state, query Element 84 Earth Search with spatial and temporal constraints, rank returned scenes and preserve each transition for review.",
+    "workflow": [
+      "Validate request and AOI",
+      "Build typed analysis plan",
+      "Query live Earth Search STAC API",
+      "Parse and rank scene metadata",
+      "Assemble evidence and execution trace",
+      "Deliver through FastAPI and MapLibre"
+    ],
+    "stack": [
+      "Python",
+      "FastAPI",
+      "Element 84 STAC",
+      "React",
+      "MapLibre GL",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "output": "A tested, containerized GeoAI application with live public-data discovery and scope-accurate reporting."
+  },
   "farm-boundary": {
     "repo": "https://github.com/tushar2159/semantic-segmentation-pipeline",
     "title": "Farm Boundary Detection",
