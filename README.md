@@ -3,6 +3,8 @@
 A public portfolio website for showcasing GeoAI, remote sensing, computer vision,
 spatial product engineering and AI-system capabilities.
 
+The site includes a token-free [CesiumJS 3D project explorer](https://tushar2159.github.io/geoai-portfolio/explorer/) with cinematic mission fly-to navigation, interactive project hotspots, viewing controls, and direct handoff to Agentic Earth Intelligence.
+
 ## Run locally
 
 Open `index.html` in a browser, or run:

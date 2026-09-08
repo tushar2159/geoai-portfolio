@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Tushar Katkar's interactive 3D GeoAI project explorer." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23030c15'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-size='30' fill='%2364f0d8'%3ETK%3C/text%3E%3C/svg%3E" />
+  <title>GeoAI Globe · Tushar Katkar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/cesium@1.145.0/Build/Cesium/Cesium.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/cesium@1.145.0/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=1" />
+</head>
+<body>
+  <main>
+    <div id="globe" aria-label="Interactive 3D globe showing GeoAI portfolio locations"></div>
+    <header>
+      <a class="brand" href="../">TK<span>.</span></a>
+      <div><strong>GeoAI Globe</strong><small>Interactive project intelligence</small></div>
+      <nav><a href="../">Portfolio</a><a href="https://github.com/tushar2159" target="_blank" rel="noopener">GitHub ↗</a></nav>
+    </header>
+
+    <aside class="control-panel glass">
+      <p class="eyebrow">SPATIAL PORTFOLIO</p>
+      <h1>Explore my work<br><span>across Earth.</span></h1>
+      <p class="intro">Select a mission, fly to its geography and inspect the engineering system behind it.</p>
+      <div class="mode-switch" aria-label="Explorer modes">
+        <a href="../">2D Portfolio</a><button class="active">3D Globe</button><a href="https://tushar2159.github.io/agentic-earth-intelligence/">AI Analyst</a>
+      </div>
+      <div class="section-label"><span>MISSIONS</span><small id="missionCount">04 locations</small></div>
+      <div id="missions" class="missions"></div>
+      <div class="section-label"><span>VIEW</span></div>
+      <div class="layers">
+        <button data-layer="imagery" class="active"><i></i>Satellite</button>
+        <button data-layer="network" class="active"><i></i>Network</button>
+        <button data-layer="atmosphere" class="active"><i></i>Atmosphere</button>
+        <button data-layer="rotation" class="active"><i></i>Auto orbit</button>
+      </div>
+    </aside>
+
+    <section id="projectCard" class="project-card glass" aria-live="polite">
+      <button id="closeCard" aria-label="Close project details">×</button>
+      <span id="projectType">FLAGSHIP SYSTEM</span>
+      <h2 id="projectTitle">Agentic Earth Intelligence</h2>
+      <p id="projectDescription"></p>
+      <div id="projectStack" class="stack"></div>
+      <div class="card-actions"><a id="projectDemo" href="https://tushar2159.github.io/agentic-earth-intelligence/">Launch live system ↗</a><a id="projectRepo" href="https://github.com/tushar2159" target="_blank" rel="noopener">Inspect code ↗</a></div>
+    </section>
+
+    <div class="status glass"><span class="pulse"></span><div><b id="statusTitle">GLOBAL VIEW ACTIVE</b><small id="statusDetail">Drag to orbit · scroll to zoom · select a hotspot</small></div></div>
+    <div class="coordinates glass"><span>CAMERA</span><b id="coordinates">0.00° · 0.00° · 18,000 km</b></div>
+  </main>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
