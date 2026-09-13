@@ -11,25 +11,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/cesium@1.145.0/Build/Cesium/Cesium.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/cesium@1.145.0/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=1" />
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="enhancements.css?v=1" />
 </head>
 <body>
   <main>
     <div id="globe" aria-label="Interactive 3D globe showing GeoAI portfolio locations"></div>
     <header>
       <a class="brand" href="../">TK<span>.</span></a>
-      <div><strong>GeoAI Globe</strong><small>Interactive project intelligence</small></div>
-      <nav><a href="../">Portfolio</a><a href="https://github.com/tushar2159" target="_blank" rel="noopener">GitHub ↗</a></nav>
+      <div><strong>Earth Explorer</strong><small>Select an AOI · launch analysis</small></div>
+      <nav aria-label="Product navigation"><a href="../">Portfolio</a><a class="active" href="./">Earth Explorer</a><a href="https://tushar2159.github.io/agentic-earth-intelligence/">AI Analyst</a><a href="https://github.com/tushar2159" target="_blank" rel="noopener">GitHub ↗</a></nav>
     </header>
 
     <aside class="control-panel glass">
-      <p class="eyebrow">SPATIAL PORTFOLIO</p>
-      <h1>Explore my work<br><span>across Earth.</span></h1>
-      <p class="intro">Select a mission, fly to its geography and inspect the engineering system behind it.</p>
-      <div class="mode-switch" aria-label="Explorer modes">
-        <a href="../">2D Portfolio</a><button class="active">3D Globe</button><a href="https://tushar2159.github.io/agentic-earth-intelligence/">AI Analyst</a>
-      </div>
-      <div class="section-label"><span>MISSIONS</span><small id="missionCount">09 locations</small></div>
+      <p class="eyebrow">AOI WORKSPACE · LIVE STATIC DEMO</p>
+      <h1>Select anywhere.<br><span>Analyze with AI.</span></h1>
+      <p class="intro">Search or click the globe, define a public analysis area, then hand its exact context to the AI Analyst.</p>
+      <form id="locationForm" class="location-search"><label for="locationSearch">GO TO LOCATION</label><div><input id="locationSearch" placeholder="Pune or 18.5204, 73.8567" autocomplete="off"><button>Go</button></div><small id="searchMessage">Curated public locations and latitude/longitude are supported.</small></form>
+      <div class="section-label"><span>PUBLIC DEMOS</span><small id="missionCount">04 scenarios</small></div>
       <div id="missions" class="missions"></div>
       <div class="section-label"><span>VIEW</span></div>
       <div class="layers">
@@ -38,6 +37,15 @@
         <button data-layer="atmosphere" class="active"><i></i>Atmosphere</button>
         <button data-layer="rotation" class="active"><i></i>Auto orbit</button>
       </div>
+      <form id="analysisForm" class="analysis-form">
+        <div class="section-label"><span>ANALYZE THIS LOCATION</span><small id="modeBadge">STATIC → ANALYST</small></div>
+        <div id="selectedLocation" class="selected-location"><b>No AOI selected</b><small>Click the globe or choose a public demo.</small></div>
+        <label>Analysis type<select id="analysisType"><option value="urban_change">Urban change</option><option value="vegetation_change">Vegetation change</option><option value="water_change">Water change</option><option value="general_change">General spectral change</option></select></label>
+        <div class="form-grid"><label>Date A<input id="dateA" type="date" value="2020-01-01"></label><label>Date B<input id="dateB" type="date" value="2026-12-31"></label></div>
+        <div class="form-grid"><label>Cloud threshold<input id="cloud" type="number" min="0" max="100" value="20"><span>%</span></label><label>AOI radius<select id="radius"><option value="2">2 km</option><option value="5" selected>5 km</option><option value="10">10 km</option></select></label></div>
+        <button id="runAnalysis" class="run-analysis" type="submit" disabled>Run AI Analysis ↗</button>
+        <p class="mode-note"><b>Static mode:</b> AOI selection and handoff work entirely in-browser. Pixel processing runs only when a configured backend is available.</p>
+      </form>
     </aside>
 
     <section id="projectCard" class="project-card glass" aria-live="polite">
@@ -52,6 +60,6 @@
     <div class="status glass"><span class="pulse"></span><div><b id="statusTitle">GLOBAL VIEW ACTIVE</b><small id="statusDetail">Drag to orbit · scroll to zoom · select a hotspot</small></div></div>
     <div class="coordinates glass"><span>CAMERA</span><b id="coordinates">0.00° · 0.00° · 18,000 km</b></div>
   </main>
-  <script src="app.js?v=1"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

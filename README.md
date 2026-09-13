@@ -3,7 +3,20 @@
 A public portfolio website for showcasing GeoAI, remote sensing, computer vision,
 spatial product engineering and AI-system capabilities.
 
-The site includes a token-free [CesiumJS 3D project explorer](https://tushar2159.github.io/geoai-portfolio/explorer/) with cinematic mission fly-to navigation, interactive project hotspots, viewing controls, and direct handoff to Agentic Earth Intelligence.
+The site is the entry point to one connected product experience:
+
+`Portfolio → Cesium Earth Explorer → selected AOI → Agentic Earth Intelligence`
+
+The token-free [Earth Explorer](https://tushar2159.github.io/geoai-portfolio/explorer/) supports curated public-place search, latitude/longitude input, click-anywhere AOI selection, selectable radius, public demo scenarios, and an encoded handoff to the Analyst. The user must confirm before analysis runs.
+
+## Deployment model
+
+- The portfolio and Explorer are static GitHub Pages applications.
+- They never imply that Python runs in GitHub Pages.
+- No private Cesium, Mapbox, AWS, or geocoding token is required.
+- Pixel-level EO processing belongs to the optional FastAPI backend documented in `agentic-earth-intelligence`.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the system boundary.
 
 ## Run locally
 
